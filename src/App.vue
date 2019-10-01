@@ -23,11 +23,15 @@ export default {
   .link {
     color:white;
   }
+  
 </style>
 <style>
 body {
   margin: 0;
 }
+.bg-custom {
+    background-color: #563d7c;
+  }
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

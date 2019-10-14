@@ -6,6 +6,8 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 import Home from '@/components/Home'
 import Todolists from '@/components/Todolists'
+import Addtodolist from '@/components/Addtodolist'
+import Profile from '@/components/Profile'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/lists',
       name: 'Lists',
       component: Todolists
+    },
+    {
+      path: '/addtodolist',
+      name: 'Addtodolist',
+      component: Addtodolist
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     },
   ]
 })

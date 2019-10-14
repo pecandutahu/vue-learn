@@ -14,9 +14,6 @@
                 <li class="nav-item">
                     <router-link class="nav-link" to="/lists">To do List</router-link>
                 </li>
-                <li class="nav-item">
-                    <router-link class="nav-link" to="/contact">Contact</router-link>
-                </li>
                 <li v-if="!user" class="nav-item">
                     <router-link class="nav-link" to="/login">Login</router-link>
                 </li>
@@ -28,14 +25,11 @@
                         {{ user.name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <router-link class="dropdown-item" to="/profile">Profile</router-link>
                         <a class="dropdown-item" @click="logout()" style="cursor: pointer;">Logout</a>
                     </div>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
         </div>
     </nav>

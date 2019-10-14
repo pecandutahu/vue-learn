@@ -1,7 +1,7 @@
 <template>
-<div class="container" >
+<div class="container">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-6 mx-auto">
             <form action="/action_page.php">
                 <div class="form-group">
                     <label for="email">Nama:</label>

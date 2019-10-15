@@ -7,7 +7,7 @@
         <h6> <router-link class ="btn btn-primary" to="/addtodolist"> Tambah </router-link></h6>
     </div>
     <hr>
-    <div class="row" id = "todolist">
+    <div v-if ="user" class="row" id = "todolist">
         <div v-for="list in todolists" class="col-4 col-md-4 custom-card">
             <div v-if ="list.status==0"  class="card text-white bg-info mb-3" style="max-width: 18rem;" >
                 <div class="card-body">
@@ -15,7 +15,9 @@
                     <p class="card-text">{{list.description}}</p>
                     <p class="card-text"><small class="text-white">last update {{list.updated_at}}</small></p>
                     <p class="card-text"><small class="text-white">Status On progress</small></p>
-                
+                    <input type="hidden" :value="list.id" id="id">  
+                    <input type="hidden" :value="1" id="status">  
+                    <button type="button" class="btn btn-warning" @click="changestatus()"> Done </button>
                 </div>
                
             </div>
@@ -25,9 +27,15 @@
                 <p class="card-text">{{list.description}}</p>
                 <p class="card-text"><small class="">last update {{list.updated_at}}</small></p>
                 <p class="card-text"><small class="">Status Selesai</small></p>
+                    <input type="hidden" :value="list.id" id="id">  
+                    <input type="hidden" :value="0" id="status">  
+                    <button type="button" class="btn btn-warning" @click="notyet()"> Not Yet </button>                
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row" v-else>
+        Anda Harus Login
     </div>
 </div>
 
@@ -42,7 +50,8 @@
             return {
                 todolists: null,
                 loading: true,
-                errored: false
+                errored: false,
+                user:JSON.parse(localStorage.user)
             }
         },
         mounted(){
@@ -57,17 +66,32 @@
                 })
                 .finally(() => this.loading = false)
         },
-        method:{
+        methods:{
             changestatus(){
                 this.axios.post("http://localhost:8000/todolists/changestatus",{
-                    id : this.id,
-                    status : this.status,
+                    id : document.getElementById('id').value,
+                    status : document.getElementById('id').value,
                 }).then((response)=>{
                     console.log(response.data)
                     if (response.data.status === 200){
-                        localStorage.user = JSON.stringify(response.data.data.User)
-                        location.reload();
-                        this.$router.push('/todolist');
+                        // location.reload()
+
+                    }else{
+                        alert('Login gagal');
+                    }
+                }).catch((error)=>{
+                    console.log(error)
+                })
+            },
+
+            notyet(id,status){
+                this.axios.post("http://localhost:8000/todolists/changestatus",{
+                    id : document.getElementById('id').value,
+                    status : document.getElementById('id').value,
+                }).then((response)=>{
+                    console.log(response.data)
+                    if (response.data.status === 200){
+                        // location.reload()
 
                     }else{
                         alert('Login gagal');

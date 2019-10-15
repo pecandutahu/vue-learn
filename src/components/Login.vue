@@ -43,10 +43,9 @@
                 }).then((response)=>{
                     console.log(response.data)
                     if (response.data.status === 200){
-                        localStorage.user = JSON.stringify(response.data.data.User)
+                        localStorage.user = JSON.stringify(response.data.data.User)                        
+                        this.$router.push('/lists');
                         location.reload();
-                        this.$router.push('/todolist');
-
                     }else{
                         alert('Login gagal');
                     }

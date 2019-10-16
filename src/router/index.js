@@ -8,6 +8,7 @@ import Home from '@/components/Home'
 import Todolists from '@/components/Todolists'
 import Addtodolist from '@/components/Addtodolist'
 import Profile from '@/components/Profile'
+import TodoEdit from '@/components/TodoEdit'
 
 Vue.use(Router)
 
@@ -47,5 +48,10 @@ export default new Router({
       name: 'Profile',
       component: Profile
     },
+    {
+      path: '/todoEdit/:id',
+      name: 'TodoEdit',
+      component: TodoEdit
+    }
   ]
 })
